@@ -1,0 +1,3 @@
+package com.example.events;
+import jakarta.persistence.*;import java.time.LocalDateTime;
+@Entity @Table(name="enrollments",uniqueConstraints=@UniqueConstraint(columnNames={"user_id","event_id"})) public class Enrollment { @Id @GeneratedValue(strategy=GenerationType.IDENTITY) public Long id; @ManyToOne(optional=false) public User user; @ManyToOne(optional=false) public Event event; @Column(nullable=false) public String participantName; @Column(nullable=false) public String participantEmail; @Column(nullable=false) public String participantPhone; @Column(nullable=false,unique=true) public String registrationId; @Column(nullable=false) public String status="PENDING_PAYMENT"; @Column(nullable=false) public LocalDateTime createdAt=LocalDateTime.now(); public Enrollment(){} }
